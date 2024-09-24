@@ -1,0 +1,114 @@
+{
+    "$id": 0,
+    "$type": "0|MapsExt.CustomMap, MapsExtended",
+    "_id": "609a1116-2985-40b8-8b1a-8e897e4fd6db",
+    "_name": "prk_Is_it_random",
+    "_version": "1.4.2",
+    "_settings": {
+        "$id": 1,
+        "$type": "1|MapsExt.CustomMapSettings, MapsExtended",
+        "_mapSize": {
+            "$type": "2|UnityEngine.Vector2, UnityEngine.CoreModule",
+            1080,
+            1080
+        },
+        "_viewportHeight": 1080
+    },
+    "_mapObjects": {
+        "$id": 2,
+        "$type": "3|MapsExt.MapObjects.MapObjectData[], MapsExtended",
+        "$rlength": 3,
+        "$rcontent": [
+            {
+                "$id": 3,
+                "$type": "4|MapsExt.MapObjects.SpawnData, MapsExtended",
+                "_active": true,
+                "_spawnId": 0,
+                "_spawnTeamId": 0,
+                "_position": {
+                    "$type": 2,
+                    1.75,
+                    -3.5
+                }
+            },
+            {
+                "$id": 4,
+                "$type": "5|LopisParkourNS.RectFinishData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 5,
+                    "$type": "6|MapsExt.Properties.PositionProperty, MapsExtended",
+                    "_x": 0,
+                    "_y": 12.625
+                },
+                "_scale": {
+                    "$id": 6,
+                    "$type": "7|MapsExt.Properties.ScaleProperty, MapsExtended",
+                    "_x": 45,
+                    "_y": 18.75
+                },
+                "_rotation": {
+                    "$id": 7,
+                    "$type": "8|MapsExt.Properties.RotationProperty, MapsExtended",
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 8,
+                    "$type": "9|MapsExt.AnimationKeyframe[], MapsExtended",
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "_gold": {
+                    "$id": 9,
+                    "$type": "10|LopisParkourNS.GoldMedalProperty, LopisParkour",
+                    "_goldMedalTime": 0
+                },
+                "_silver": {
+                    "$id": 10,
+                    "$type": "11|LopisParkourNS.SilverMedalProperty, LopisParkour",
+                    "_SilverMedalTime": 0
+                },
+                "_bronze": {
+                    "$id": 11,
+                    "$type": "12|LopisParkourNS.BronzeMedalProperty, LopisParkour",
+                    "_BronzeMedalTime": 0
+                },
+                "_shiny": {
+                    "$id": 12,
+                    "$type": "13|LopisParkourNS.ShinyMedalProperty, LopisParkour",
+                    "_ShinyMedalTime": 0
+                }
+            },
+            {
+                "$id": 13,
+                "$type": "14|MapsExt.MapObjects.GroundData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 14,
+                    "$type": 6,
+                    "_x": 4.54485416E-07,
+                    "_y": -12.875
+                },
+                "_scale": {
+                    "$id": 15,
+                    "$type": 7,
+                    "_x": 17.25,
+                    "_y": 45
+                },
+                "_rotation": {
+                    "$id": 16,
+                    "$type": 8,
+                    "_angle": 270
+                },
+                "_keyframes": {
+                    "$id": 17,
+                    "$type": 9,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            }
+        ]
+    }
+}

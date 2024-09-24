@@ -1,0 +1,99 @@
+{
+    "$id": 0,
+    "$type": "0|MapsExt.CustomMap, MapsExtended",
+    "_id": "6e6a8703-c96d-4531-a796-3bb8c70b7ed4",
+    "_name": "prk_starter_card_test",
+    "_version": "1.4.2",
+    "_settings": {
+        "$id": 1,
+        "$type": "1|MapsExt.CustomMapSettings, MapsExtended",
+        "_mapSize": {
+            "$type": "2|UnityEngine.Vector2, UnityEngine.CoreModule",
+            1920,
+            1080
+        },
+        "_viewportHeight": 1080
+    },
+    "_mapObjects": {
+        "$id": 2,
+        "$type": "3|MapsExt.MapObjects.MapObjectData[], MapsExtended",
+        "$rlength": 3,
+        "$rcontent": [
+            {
+                "$id": 3,
+                "$type": "4|MapsExt.MapObjects.SpawnData, MapsExtended",
+                "_active": true,
+                "_spawnId": 0,
+                "_spawnTeamId": 0,
+                "_position": {
+                    "$type": 2,
+                    -17.75,
+                    -1.25
+                }
+            },
+            {
+                "$id": 4,
+                "$type": "5|MapsExt.MapObjects.GroundData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 5,
+                    "$type": "6|MapsExt.Properties.PositionProperty, MapsExtended",
+                    "_x": -18,
+                    "_y": -4.75
+                },
+                "_scale": {
+                    "$id": 6,
+                    "$type": "7|MapsExt.Properties.ScaleProperty, MapsExtended",
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 7,
+                    "$type": "8|MapsExt.Properties.RotationProperty, MapsExtended",
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 8,
+                    "$type": "9|MapsExt.AnimationKeyframe[], MapsExtended",
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 9,
+                "$type": "10|LopisParkourNS.StarterCardData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 10,
+                    "$type": 6,
+                    "_x": -0.01164209,
+                    "_y": 0.0116386581
+                },
+                "_scale": {
+                    "$id": 11,
+                    "$type": 7,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 12,
+                    "$type": 8,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 13,
+                    "$type": 9,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "cardName": {
+                    "$id": 14,
+                    "$type": "11|LopisParkourNS.CardNameProperty, LopisParkour",
+                    "cardName": "Grow"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,6 @@
+<Project>
+    <PropertyGroup>
+        <BepInEx>D:\roadman\r2mmData\ROUNDS\profiles\mapping\BepInEx\core</BepInEx>
+        <ROUNDS>E:\SteamLibrary\steamapps\common\ROUNDS</ROUNDS>
+    </PropertyGroup>
+</Project>

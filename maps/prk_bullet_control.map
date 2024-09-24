@@ -1,0 +1,1515 @@
+{
+    "$id": 0,
+    "$type": "0|MapsExt.CustomMap, MapsExtended",
+    "_id": "5215ef64-8844-4bf6-99a7-8bc152e0a874",
+    "_name": "prk_bullet_control",
+    "_version": "1.4.2",
+    "_settings": {
+        "$id": 1,
+        "$type": "1|MapsExt.CustomMapSettings, MapsExtended",
+        "_mapSize": {
+            "$type": "2|UnityEngine.Vector2, UnityEngine.CoreModule",
+            1920,
+            1080
+        },
+        "_viewportHeight": 1080
+    },
+    "_mapObjects": {
+        "$id": 2,
+        "$type": "3|MapsExt.MapObjects.MapObjectData[], MapsExtended",
+        "$rlength": 42,
+        "$rcontent": [
+            {
+                "$id": 3,
+                "$type": "4|MapsExt.MapObjects.GroundData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 4,
+                    "$type": "5|MapsExt.Properties.PositionProperty, MapsExtended",
+                    "_x": -0.125,
+                    "_y": -18.5
+                },
+                "_scale": {
+                    "$id": 5,
+                    "$type": "6|MapsExt.Properties.ScaleProperty, MapsExtended",
+                    "_x": 72.25,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 6,
+                    "$type": "7|MapsExt.Properties.RotationProperty, MapsExtended",
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 7,
+                    "$type": "8|MapsExt.AnimationKeyframe[], MapsExtended",
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 8,
+                "$type": "9|LopisParkourNS.StarterCardData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 9,
+                    "$type": 5,
+                    "_x": 0.25,
+                    "_y": -31.25
+                },
+                "_scale": {
+                    "$id": 10,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 11,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 12,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "cardName": {
+                    "$id": 13,
+                    "$type": "10|LopisParkourNS.CardNameProperty, LopisParkour",
+                    "cardName": "Remote"
+                }
+            },
+            {
+                "$id": 14,
+                "$type": "11|MapsExt.MapObjects.SpawnData, MapsExtended",
+                "_active": true,
+                "_spawnId": 0,
+                "_spawnTeamId": 0,
+                "_position": {
+                    "$type": 2,
+                    -27.75,
+                    -0.25
+                }
+            },
+            {
+                "$id": 15,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 16,
+                    "$type": 5,
+                    "_x": -35.125,
+                    "_y": 1.25
+                },
+                "_scale": {
+                    "$id": 17,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 37.5
+                },
+                "_rotation": {
+                    "$id": 18,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 19,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 20,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 21,
+                    "$type": 5,
+                    "_x": 34.875,
+                    "_y": 0.75
+                },
+                "_scale": {
+                    "$id": 22,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 38
+                },
+                "_rotation": $iref:18,
+                "_keyframes": {
+                    "$id": 23,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 24,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 25,
+                    "$type": 5,
+                    "_x": -0.125,
+                    "_y": 19
+                },
+                "_scale": {
+                    "$id": 26,
+                    "$type": 6,
+                    "_x": 72.25,
+                    "_y": 2
+                },
+                "_rotation": $iref:6,
+                "_keyframes": {
+                    "$id": 27,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 28,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 29,
+                    "$type": 5,
+                    "_x": -16.375,
+                    "_y": -1.25
+                },
+                "_scale": {
+                    "$id": 30,
+                    "$type": 6,
+                    "_x": 7.75,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 31,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 32,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 33,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 34,
+                    "$type": 5,
+                    "_x": 0.75,
+                    "_y": 11.5
+                },
+                "_scale": {
+                    "$id": 35,
+                    "$type": 6,
+                    "_x": 23,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 36,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 37,
+                "$type": "12|LopisParkourNS.DamageRectData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 38,
+                    "$type": 5,
+                    "_x": 31,
+                    "_y": 11.125
+                },
+                "_scale": {
+                    "$id": 39,
+                    "$type": 6,
+                    "_x": 6,
+                    "_y": 14.25
+                },
+                "_rotation": {
+                    "$id": 40,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 41,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 42,
+                "$type": 12,
+                "_active": true,
+                "_position": {
+                    "$id": 43,
+                    "$type": 5,
+                    "_x": 31,
+                    "_y": -10.875
+                },
+                "_scale": {
+                    "$id": 44,
+                    "$type": 6,
+                    "_x": 6,
+                    "_y": 14.25
+                },
+                "_rotation": $iref:40,
+                "_keyframes": {
+                    "$id": 45,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 46,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 47,
+                    "$type": 5,
+                    "_x": 32.125,
+                    "_y": -3.25
+                },
+                "_scale": {
+                    "$id": 48,
+                    "$type": 6,
+                    "_x": 3.75,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 49,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 50,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 51,
+                    "$type": 5,
+                    "_x": -11.5,
+                    "_y": -14.75
+                },
+                "_scale": {
+                    "$id": 52,
+                    "$type": 6,
+                    "_x": 13.5,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 53,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 54,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 55,
+                    "$type": 5,
+                    "_x": 0.25,
+                    "_y": -16.75
+                },
+                "_scale": {
+                    "$id": 56,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 57,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 58,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 59,
+                    "$type": 5,
+                    "_x": -9.75,
+                    "_y": 7.375
+                },
+                "_scale": {
+                    "$id": 60,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 10.25
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 61,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 62,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 63,
+                    "$type": 5,
+                    "_x": -5.75,
+                    "_y": -5.75
+                },
+                "_scale": {
+                    "$id": 64,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 16
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 65,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 66,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 67,
+                    "$type": 5,
+                    "_x": -9.75,
+                    "_y": 16.625
+                },
+                "_scale": {
+                    "$id": 68,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 4.25
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 69,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 70,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 71,
+                    "$type": 5,
+                    "_x": -2.5,
+                    "_y": 13
+                },
+                "_scale": {
+                    "$id": 72,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 4
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 73,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 74,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 75,
+                    "$type": 5,
+                    "_x": 4,
+                    "_y": 16.875
+                },
+                "_scale": {
+                    "$id": 76,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 4.25
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 77,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 78,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 79,
+                    "$type": 5,
+                    "_x": 11.25,
+                    "_y": 13.25
+                },
+                "_scale": {
+                    "$id": 80,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 3.5
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 81,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 82,
+                "$type": "13|MapsExt.MapObjects.BoxDestructibleData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 83,
+                    "$type": 5,
+                    "_x": 31.375,
+                    "_y": 0.125
+                },
+                "_scale": {
+                    "$id": 84,
+                    "$type": 6,
+                    "_x": 4.75,
+                    "_y": 4.75
+                },
+                "_rotation": {
+                    "$id": 85,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 86,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "_damageable": true
+            },
+            {
+                "$id": 87,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 88,
+                    "$type": 5,
+                    "_x": -31.25,
+                    "_y": -9.75
+                },
+                "_scale": {
+                    "$id": 89,
+                    "$type": 6,
+                    "_x": 5.5,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 90,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 91,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 92,
+                    "$type": 5,
+                    "_x": -26,
+                    "_y": -15
+                },
+                "_scale": {
+                    "$id": 93,
+                    "$type": 6,
+                    "_x": 5.5,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 94,
+                    "$type": 7,
+                    "_angle": 270
+                },
+                "_keyframes": {
+                    "$id": 95,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 96,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 97,
+                    "$type": 5,
+                    "_x": 32.25,
+                    "_y": 3.5
+                },
+                "_scale": {
+                    "$id": 98,
+                    "$type": 6,
+                    "_x": 3.5,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 99,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 100,
+                "$type": "14|MapsExt.MapObjects.BoxData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 101,
+                    "$type": 5,
+                    "_x": -26.375,
+                    "_y": -10.125
+                },
+                "_scale": {
+                    "$id": 102,
+                    "$type": 6,
+                    "_x": 4.25,
+                    "_y": 4.25
+                },
+                "_rotation": {
+                    "$id": 103,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 104,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 105,
+                "$type": "15|MapsExt.MapObjects.RopeData, MapsExtended",
+                "_active": true,
+                "_pos1": {
+                    "$type": 2,
+                    31.25,
+                    0.25
+                },
+                "_pos2": {
+                    "$type": 2,
+                    -25,
+                    -9.75
+                }
+            },
+            {
+                "$id": 106,
+                "$type": "16|LopisParkourNS.FinishData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 107,
+                    "$type": 5,
+                    "_x": -30.5,
+                    "_y": -14.5
+                },
+                "_scale": {
+                    "$id": 108,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 109,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 110,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "_gold": {
+                    "$id": 111,
+                    "$type": "17|LopisParkourNS.GoldMedalProperty, LopisParkour",
+                    "_goldMedalTime": 8.4
+                },
+                "_silver": {
+                    "$id": 112,
+                    "$type": "18|LopisParkourNS.SilverMedalProperty, LopisParkour",
+                    "_SilverMedalTime": 13
+                },
+                "_bronze": {
+                    "$id": 113,
+                    "$type": "19|LopisParkourNS.BronzeMedalProperty, LopisParkour",
+                    "_BronzeMedalTime": 20
+                },
+                "_shiny": {
+                    "$id": 114,
+                    "$type": "20|LopisParkourNS.ShinyMedalProperty, LopisParkour",
+                    "_ShinyMedalTime": 7.7
+                }
+            },
+            {
+                "$id": 115,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 116,
+                    "$type": 5,
+                    "_x": 3.75,
+                    "_y": 11.5
+                },
+                "_scale": {
+                    "$id": 117,
+                    "$type": 6,
+                    "_x": 17,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 118,
+                    "$type": 8,
+                    "$rlength": 3,
+                    "$rcontent": [
+                        {
+                            "$id": 119,
+                            "$type": "21|MapsExt.AnimationKeyframe, MapsExtended",
+                            "_componentValues": {
+                                "$id": 120,
+                                "$type": "22|System.Collections.Generic.List`1[[MapsExt.Properties.ILinearProperty, MapsExtended]], mscorlib",
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 121,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 11.5
+                                    },
+                                    {
+                                        "$id": 122,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 123,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 124,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 125,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -14.75
+                                    },
+                                    {
+                                        "$id": 126,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 6,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 127,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 128,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 129,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 11.5
+                                    },
+                                    {
+                                        "$id": 130,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 0,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 131,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 132,
+                    "$type": 5,
+                    "_x": 3.75,
+                    "_y": -1.625
+                },
+                "_scale": {
+                    "$id": 133,
+                    "$type": 6,
+                    "_x": 17,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 134,
+                    "$type": 8,
+                    "$rlength": 4,
+                    "$rcontent": [
+                        {
+                            "$id": 135,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 136,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 137,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -1.625
+                                    },
+                                    {
+                                        "$id": 138,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 139,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 140,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 141,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -14.75
+                                    },
+                                    {
+                                        "$id": 142,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 3,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 143,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 144,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 145,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 11.5
+                                    },
+                                    {
+                                        "$id": 146,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 0,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 147,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 148,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 149,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -1.625
+                                    },
+                                    {
+                                        "$id": 150,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 3,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 151,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 152,
+                    "$type": 5,
+                    "_x": 3.75,
+                    "_y": -8.1875
+                },
+                "_scale": {
+                    "$id": 153,
+                    "$type": 6,
+                    "_x": 17,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 154,
+                    "$type": 8,
+                    "$rlength": 4,
+                    "$rcontent": [
+                        {
+                            "$id": 155,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 156,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 157,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -8.1875
+                                    },
+                                    {
+                                        "$id": 158,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 159,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 160,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 161,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -14.75
+                                    },
+                                    {
+                                        "$id": 162,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1.5,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 163,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 164,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 165,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 11.5
+                                    },
+                                    {
+                                        "$id": 166,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 0,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 167,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 168,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 169,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -8.1875
+                                    },
+                                    {
+                                        "$id": 170,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 4.5,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 171,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 172,
+                    "$type": 5,
+                    "_x": 3.75,
+                    "_y": 4.9735
+                },
+                "_scale": {
+                    "$id": 173,
+                    "$type": 6,
+                    "_x": 17,
+                    "_y": 2
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 174,
+                    "$type": 8,
+                    "$rlength": 4,
+                    "$rcontent": [
+                        {
+                            "$id": 175,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 176,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 177,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 4.9735
+                                    },
+                                    {
+                                        "$id": 178,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 179,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 180,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 181,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": -14.75
+                                    },
+                                    {
+                                        "$id": 182,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 4.5,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 183,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 184,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 185,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 11.5
+                                    },
+                                    {
+                                        "$id": 186,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 0,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 187,
+                            "$type": 21,
+                            "_componentValues": {
+                                "$id": 188,
+                                "$type": 22,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 189,
+                                        "$type": 5,
+                                        "_x": 3.75,
+                                        "_y": 4.9375
+                                    },
+                                    {
+                                        "$id": 190,
+                                        "$type": 6,
+                                        "_x": 17,
+                                        "_y": 2
+                                    },
+                                    $iref:31
+                                ]
+                            },
+                            "_duration": 1.5,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 191,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 192,
+                    "$type": 5,
+                    "_x": 11.25,
+                    "_y": 5
+                },
+                "_scale": {
+                    "$id": 193,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 194,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 195,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 196,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 197,
+                    "$type": 5,
+                    "_x": 11.25,
+                    "_y": -1.75
+                },
+                "_scale": {
+                    "$id": 198,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 199,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 200,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 201,
+                    "$type": 5,
+                    "_x": 11.25,
+                    "_y": -8.25
+                },
+                "_scale": {
+                    "$id": 202,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 203,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 204,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 205,
+                    "$type": 5,
+                    "_x": 19.875,
+                    "_y": 11.5
+                },
+                "_scale": {
+                    "$id": 206,
+                    "$type": 6,
+                    "_x": 15.75,
+                    "_y": 2
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 207,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 208,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 209,
+                    "$type": 5,
+                    "_x": -13.625,
+                    "_y": -8.25
+                },
+                "_scale": {
+                    "$id": 210,
+                    "$type": 6,
+                    "_x": 6.25,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 211,
+                    "$type": 7,
+                    "_angle": 90
+                },
+                "_keyframes": {
+                    "$id": 212,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 213,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 214,
+                    "$type": 5,
+                    "_x": -18.125,
+                    "_y": 4.25
+                },
+                "_scale": {
+                    "$id": 215,
+                    "$type": 6,
+                    "_x": 4.25,
+                    "_y": 2
+                },
+                "_rotation": $iref:211,
+                "_keyframes": {
+                    "$id": 216,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 217,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 218,
+                    "$type": 5,
+                    "_x": -18.125,
+                    "_y": 12.5
+                },
+                "_scale": {
+                    "$id": 219,
+                    "$type": 6,
+                    "_x": 4.25,
+                    "_y": 2
+                },
+                "_rotation": $iref:211,
+                "_keyframes": {
+                    "$id": 220,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 221,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 222,
+                    "$type": 5,
+                    "_x": 19,
+                    "_y": 2.5
+                },
+                "_scale": {
+                    "$id": 223,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 16
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 224,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 225,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 226,
+                    "$type": 5,
+                    "_x": 26.5,
+                    "_y": -5.875
+                },
+                "_scale": {
+                    "$id": 227,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 7.75
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 228,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 229,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 230,
+                    "$type": 5,
+                    "_x": 23.75,
+                    "_y": -15.5
+                },
+                "_scale": {
+                    "$id": 231,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 5
+                },
+                "_rotation": $iref:194,
+                "_keyframes": {
+                    "$id": 232,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 233,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 234,
+                    "$type": 5,
+                    "_x": 11.25,
+                    "_y": -15.875
+                },
+                "_scale": {
+                    "$id": 235,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 3.25
+                },
+                "_rotation": $iref:31,
+                "_keyframes": {
+                    "$id": 236,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 237,
+                "$type": 12,
+                "_active": true,
+                "_position": {
+                    "$id": 238,
+                    "$type": 5,
+                    "_x": 4,
+                    "_y": -0.125
+                },
+                "_scale": {
+                    "$id": 239,
+                    "$type": 6,
+                    "_x": 48,
+                    "_y": 36.25
+                },
+                "_rotation": {
+                    "$id": 240,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 241,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            }
+        ]
+    }
+}

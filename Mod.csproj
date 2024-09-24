@@ -1,0 +1,128 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>LopisParkour</AssemblyName>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Publicize Include="Assembly-CSharp"  IncludeCompilerGeneratedMembers="false"/>
+    <PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Reference Include="SonigonAudioEngine.Runtime">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/SonigonAudioEngine.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.SpriteMaskModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Photon3Unity3D.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Sirenix.Serialization.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sirenix.Serialization.Config">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Sirenix.Serialization.Config.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/PhotonRealtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/PhotonUnityNetworking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MapsExtended">
+      <HintPath>MapsExtended.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MapsExtended.Editor">
+      <HintPath>MapsExtended.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Publicize Include="MapsExtended"  IncludeCompilerGeneratedMembers="false"/>
+    <PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Reference Include="UnboundLib">
+      <HintPath>UnboundLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Publicize Include="UnboundLib"  IncludeCompilerGeneratedMembers="false"/>
+    <PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInEx)/BepInEx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>$(BepInEx)/BepInEx.Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInEx)/0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>$(BepInEx)/Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>$(BepInEx)/MonoMod.RuntimeDetour.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>$(BepInEx)/MonoMod.Utils.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.AudioModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

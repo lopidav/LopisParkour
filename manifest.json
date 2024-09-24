@@ -1,0 +1,10 @@
+{
+  "name": "Lopi's_Parkour",
+  "author": "lopidav",
+  "version_number": "0.1.4",
+  "website_url": "https://discord.com/users/357116721812865025",
+  "description": "Parkour!",
+  "dependencies": [
+    "woukie-MapImageObjectsEditor-1.2.3"
+  ]
+}

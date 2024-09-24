@@ -1,0 +1,164 @@
+{
+    "$id": 0,
+    "$type": "0|MapsExt.CustomMap, MapsExtended",
+    "_id": "95c20689-2c88-4781-880d-7e99ef078ab8",
+    "_name": "prk_2_Which_side_is_faster",
+    "_version": "1.4.2",
+    "_settings": {
+        "$id": 1,
+        "$type": "1|MapsExt.CustomMapSettings, MapsExtended",
+        "_mapSize": {
+            "$type": "2|UnityEngine.Vector2, UnityEngine.CoreModule",
+            1920,
+            1080
+        },
+        "_viewportHeight": 1080
+    },
+    "_mapObjects": {
+        "$id": 2,
+        "$type": "3|MapsExt.MapObjects.MapObjectData[], MapsExtended",
+        "$rlength": 5,
+        "$rcontent": [
+            {
+                "$id": 3,
+                "$type": "4|MapsExt.MapObjects.GroundData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 4,
+                    "$type": "5|MapsExt.Properties.PositionProperty, MapsExtended",
+                    "_x": -19.625,
+                    "_y": -17.25
+                },
+                "_scale": {
+                    "$id": 5,
+                    "$type": "6|MapsExt.Properties.ScaleProperty, MapsExtended",
+                    "_x": 60.75,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 6,
+                    "$type": "7|MapsExt.Properties.RotationProperty, MapsExtended",
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 7,
+                    "$type": "8|MapsExt.AnimationKeyframe[], MapsExtended",
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 8,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 9,
+                    "$type": 5,
+                    "_x": 0,
+                    "_y": 0.375
+                },
+                "_scale": {
+                    "$id": 10,
+                    "$type": 6,
+                    "_x": 10.75,
+                    "_y": 23.25
+                },
+                "_rotation": $iref:6,
+                "_keyframes": {
+                    "$id": 11,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 12,
+                "$type": 4,
+                "_active": true,
+                "_position": {
+                    "$id": 13,
+                    "$type": 5,
+                    "_x": 9.75,
+                    "_y": 3.125
+                },
+                "_scale": {
+                    "$id": 14,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 38.75
+                },
+                "_rotation": $iref:6,
+                "_keyframes": {
+                    "$id": 15,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 16,
+                "$type": "9|MapsExt.MapObjects.SpawnData, MapsExtended",
+                "_active": true,
+                "_spawnId": 0,
+                "_spawnTeamId": 0,
+                "_position": {
+                    "$type": 2,
+                    0,
+                    -14.75
+                }
+            },
+            {
+                "$id": 17,
+                "$type": "10|LopisParkourNS.FinishData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 18,
+                    "$type": 5,
+                    "_x": 0,
+                    "_y": 13.5
+                },
+                "_scale": {
+                    "$id": 19,
+                    "$type": 6,
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 20,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 21,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "_gold": {
+                    "$id": 22,
+                    "$type": "11|LopisParkourNS.GoldMedalProperty, LopisParkour",
+                    "_goldMedalTime": 3.1
+                },
+                "_silver": {
+                    "$id": 23,
+                    "$type": "12|LopisParkourNS.SilverMedalProperty, LopisParkour",
+                    "_SilverMedalTime": 3.5
+                },
+                "_bronze": {
+                    "$id": 24,
+                    "$type": "13|LopisParkourNS.BronzeMedalProperty, LopisParkour",
+                    "_BronzeMedalTime": 5
+                },
+                "_shiny": {
+                    "$id": 25,
+                    "$type": "14|LopisParkourNS.ShinyMedalProperty, LopisParkour",
+                    "_ShinyMedalTime": 2.85
+                }
+            }
+        ]
+    }
+}
