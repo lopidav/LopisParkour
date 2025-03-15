@@ -18,6 +18,14 @@ using UnboundLib.Utils;
 using UnityEngine.UI;
 using TMPro;
 using MapsExt.MapObjects;
+using Steamworks;
+using UnityEngine.TextCore;
+using Sirenix.Serialization;
+using SoundImplementation;
+using Sonigon.Internal;
+using MapsExt.Visualizers;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace LopisParkourNS;
 public class GM_Parkour : MonoBehaviour
@@ -25,7 +33,9 @@ public class GM_Parkour : MonoBehaviour
 	public static GM_Parkour instance;
 	public CustomMap _selectedMap;
 	public bool isTransitioning = false;
-	public static GhostReplayRecorder recorder = null;
+	public static GhostReplayRecorder ghostRecorder = null;
+	public static GhostReplayPlayer ghostPlayer = null;
+	public bool isEnding = false;
 	public CustomMap selectedMap {
 		get { return _selectedMap;}
 		set
@@ -37,6 +47,10 @@ public class GM_Parkour : MonoBehaviour
 	public static float timePassed = 0;
 	public static bool timerStop = false;
 	public static GameObject pauseNextMapButton;
+	public static GameObject pauseGhostEnabledButton;
+	public static bool ghostEnabled = true;
+	public static TextMeshProUGUI LeaderboardText;
+	public static TextMeshProUGUI pauseLeaderboardText;
 	public static TextMeshProUGUI pauseTimeText;
 	public static TextMeshProUGUI pauseCurrentMapText;
 	
@@ -49,8 +63,16 @@ public class GM_Parkour : MonoBehaviour
 	{
 		LopisParkour.Log("Start");
 		base.transform.root.GetComponent<SetOfflineMode>().SetOffline();
+		instance.isEnding = false;
+
+		pauseGhostEnabledButton = MenuHandler.CreateButton("GhostToggle", LopisParkour.pauseMenu, pauseGhostToggle, forceUpper: false);
+		pauseGhostEnabledButton.transform.SetAsFirstSibling(); 
 		
-		MenuHandler.CreateButton("Reload map (hotkey: R)", LopisParkour.pauseMenu, reloadMap).transform.SetAsFirstSibling();
+		var ghostText = pauseGhostEnabledButton?.GetComponentInChildren<TextMeshProUGUI>();
+		if (ghostText != null) ghostText.text = "Ghost: " + (ghostEnabled ? "On" : "Off");
+		if (ghostPlayer != null) ghostPlayer.enabled = ghostEnabled;
+
+		MenuHandler.CreateButton("Reload map [R]", LopisParkour.pauseMenu, reloadMap).transform.SetAsFirstSibling();
 		pauseNextMapButton = MenuHandler.CreateButton("Next map", LopisParkour.pauseMenu, pauseNextMapAction);
 		pauseNextMapButton.transform.SetAsFirstSibling(); 
 		MenuHandler.CreateText("", LopisParkour.pauseMenu, out pauseTimeText).transform.SetAsFirstSibling();
@@ -69,9 +91,55 @@ public class GM_Parkour : MonoBehaviour
 		CameraHandler camera = MainCam.instance.cam.GetComponentInParent<CameraZoomHandler>().gameObject.GetComponent<CameraHandler>();
 		camera._playersHaveSpawned = true;
 
-		recorder = this.gameObject.GetOrAddComponent<GhostReplayRecorder>();
+		ghostRecorder = this.gameObject.GetOrAddComponent<GhostReplayRecorder>();
+		
+		GlobalLeaderboard.onLeaderboardFinishedDownload += WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardStartedDownload += WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardSubmittionStart += WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardFail += FailedToLoadLeaderboard;
 
 		// MapsExtended.instance CameraHandler.Mode = CameraHandler.CameraMode.FollowPlayer;
+	}
+	public static void FailedToLoadLeaderboard()
+	{
+		if (LeaderboardText != null) LeaderboardText.text = "Leaderboard\nfailed to load";
+	}
+	public static IEnumerator EndCoroutine()
+	{
+		if (instance.isEnding) yield return null;
+		instance.isEnding = true;
+		GlobalLeaderboard.onLeaderboardFinishedDownload -= WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardStartedDownload -= WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardSubmittionStart -= WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardFail -= FailedToLoadLeaderboard;
+		
+		// ghostRecorder;
+		CameraHandler camera = MainCam.instance.cam.GetComponentInParent<CameraZoomHandler>().gameObject.GetComponent<CameraHandler>();
+		camera._playersHaveSpawned = false;
+		GameManager.instance.isPlaying = false;
+		GameManager.instance.battleOngoing = false;
+		// PlayerManager playerManager = PlayerManager.instance;
+		// playerManager.PlayerJoinedAction = (Action<Player>)Delegate.Combine(playerManager.PlayerJoinedAction, new Action<Player>(PlayerWasAdded));
+		// PlayerManager.instance.PlayerDiedAction -= instance.PlayerDied;
+		AsyncOperation op = SceneManager.UnloadSceneAsync($"MapsExtended:{instance.selectedMap._id}");
+		MapManager.instance.currentMap = null;
+
+
+
+		CameraHandler.Mode = CameraHandler.CameraMode.FollowPlayer;
+		while (!op.isDone)
+		{
+			yield return null;
+		}
+		PlayerAssigner.instance.SetPlayersCanJoin(canJoin: false);
+
+		GameObject.Find("Game/UI/UI_MainMenu").gameObject.SetActive(value: true);
+		GameObject.Find("Game").GetComponent<SetOfflineMode>().SetOnline();
+		LopisParkour.Log("End");
+		
+		// PlayerManager.instance.InvokeMethod("SetPlayersVisible", true);
+
+		
 	}
 	private void Update()
 	{
@@ -97,21 +165,53 @@ public class GM_Parkour : MonoBehaviour
 
 		pauseMenuUpdate();
 	}
+	public void OnDestroy()
+	{
+		
+		GlobalLeaderboard.onLeaderboardFinishedDownload -= WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardStartedDownload -= WinMenuShowLeaderboard;
+		GlobalLeaderboard.onLeaderboardSubmittionStart -= WinMenuShowLeaderboard;
+	}
 	public void reloadMap()
 	{
 		if (isTransitioning) return;
+		MapTransition.isTransitioning = true;
+		foreach(var card in CardChoice.instance.spawnedCards)
+		{
+			UnityEngine.Object.Destroy(card);
+		}
+		CardChoice.instance.spawnedCards.Clear();
+		
 		LoadSelectedMap();
 		PlayerManager.instance.RemovePlayers();
-		PlayerManager.instance.ResetCharacters();
+		// PlayerManager.instance.ResetCharacters();
 		timerStop = false;
 		TimeHandler.instance.gameOverTime = 1f;
+		ghostRecorder?.Reset();
+		ghostPlayer?.RepaintTheGhost();
 		MapTransition.isTransitioning = true;
-		recorder.Reset();
 	}
 	public void MapWon()
 	{
 		timerStop = true;
+		
+		GlobalLeaderboard.RequestUpdate();
+		// if (GlobalLeaderboard.isUpdating) LeaderboardText.text = "Leaderboard\nloading";
+		// GlobalLeaderboard.onLeaderboardDownload += WinMenuShowLeaderboard;
+		if (!GM_Parkour.instance._selectedMap.id.StartsWith(BepInEx.Paths.GameRootPath) )
+		{
+			GlobalLeaderboard.AddRecord(LopisParkour.pathToId(selectedMap.id), timePassed);
+			WinMenuShowLeaderboard();
+			CheckPBGhost();
+		}
+
 		StartCoroutine(MapWonCorutine());
+	}
+	public void CheckPBGhost()
+	{
+		ParkourProgressEntry? prevEntry = LopisParkour.GetRecord(GM_Parkour.instance.selectedMap.id) ?? new ParkourProgressEntry();
+		if (timePassed == 0 || (prevEntry.time >0 && prevEntry.time <= timePassed)) return;
+		ghostRecorder.SaveReplay(LopisParkour.pathToId(GM_Parkour.instance._selectedMap.id).Replace('\\','_')+"PB");
 	}
 	public void pauseMenuUpdate()
 	{
@@ -151,6 +251,13 @@ public class GM_Parkour : MonoBehaviour
 		}
 		return null;
 	}
+	public void pauseGhostToggle()
+	{
+		ghostEnabled = !ghostEnabled;
+		var text = pauseGhostEnabledButton?.GetComponentInChildren<TextMeshProUGUI>();
+		if (text != null) text.text = "Ghost: " + (ghostEnabled ? "On" : "Off");
+		ghostPlayer.enabled = ghostEnabled;
+	}
 	public void pauseNextMapAction()
 	{
 		var targetMap = getNextMap();
@@ -164,9 +271,8 @@ public class GM_Parkour : MonoBehaviour
 	{
 		isTransitioning = true;
 		TimeHandler.instance.DoSlowDown();
-		
 		// UIHandler.instance.ShowJoinGameText(TimeSpan.FromSeconds(timePassed).ToString("hh\\:mm\\:ss\\.fff") + "improve?", PlayerManager.instance.GetColorFromTeam(PlayerManager.instance.players.FirstOrDefault().teamID).winText);
-
+		
 		yield return new WaitForSecondsRealtime(0.25f);
 		isTransitioning = false;
 		OpenParkourWinMenu();
@@ -178,58 +284,9 @@ public class GM_Parkour : MonoBehaviour
 		PlayerManager.instance.ResetCharacters();
 		
 		
-		// UIHandler.instance.popUpHandler.isPicking = true;
-		// UIHandler.instance.popUpHandler.fToCall = (answer) =>
-		// {
-		// 	if (answer == PopUpHandler.YesNo.Yes)
-		// 	{
-		// 		TimeHandler.instance.DoSpeedUp();
-		// 		reloadMap();
-		// 		UIHandler.instance.HideJoinGameText();
-		// 	}
-		// 	else
-		// 	{
-		// 		TimeHandler.instance.DoSpeedUp();
-
-		// 		UIHandler.instance.HideJoinGameText();
-		// 		MainMenuHandler.instance.Open();
-		// 		StartCoroutine(MapManager.instance.UnloadAfterSeconds(MapManager.instance.currentMap.Scene));
-		// 		MapTransition.instance.Exit(MapManager.instance.currentMap.Map);
-		// 		PlayerManager.instance.RemovePlayers();
-		// 		// LopisParkour.parkourMenu.gameObject.SetActive(value: true);
-		// 	}
-		// };
-		// UIHandler.instance.popUpHandler.yesPart.particleSettings.color = PlayerManager.instance.GetColorFromTeam(PlayerManager.instance.players.FirstOrDefault().teamID).winText;
-		// UIHandler.instance.popUpHandler.noPart.particleSettings.color = PlayerManager.instance.GetColorFromTeam(PlayerManager.instance.players.FirstOrDefault().teamID).winText;
-		// UIHandler.instance.popUpHandler.yesPart.loop = true;
-		// UIHandler.instance.popUpHandler.yesPart.Play();
-		// UIHandler.instance.popUpHandler.yesAnim.PlayIn();
-		// UIHandler.instance.popUpHandler.noPart.loop = true;
-		// UIHandler.instance.popUpHandler.noPart.Play();
 	}
-	public static void OpenParkourWinMenu()
+	public static MedalType WhatMedalIsIt(float time)
 	{
-		var mainMenu = GameObject.Find("/Game/UI/UI_MainMenu/Canvas/ListSelector/Main/Group");
-		mainMenu.transform.position = new Vector3(0,0,0); 
-		
-		if (LopisParkour.parkourWinMenu == null)
-		{
-			return;
-		}
-			
-		MainMenuHandler.instance.Open();
-		LopisParkour.parkourWinMenu.GetComponent<ListMenuPage>().Open();
-		LopisParkour.parkourWinMenu.GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1f;
-		var contents = LopisParkour.parkourWinMenu.transform.Find("Group/Grid/Scroll View/Viewport/Content");
-		if (contents) foreach(Transform child in contents)
-		{
-			Destroy(child.gameObject);
-		}
-
-		ParkourProgressEntry? prevEntry = LopisParkour.GetRecord(GM_Parkour.instance.selectedMap.id) ?? new ParkourProgressEntry();
-		// float prevTime = prevEntry == null ? -1 : prevEntry.time;
-		// MedalType prevMedal = prevEntry == null ? MedalType.none : prevEntry.medal;
-		
 		MapObjectData finish = GM_Parkour.instance.selectedMap.MapObjects.FirstOrDefault(mod => mod.GetProperty<GoldMedalProperty>() != null);
 		float bronzeTime = 0f;
 		float silverTime = 0f;
@@ -242,11 +299,87 @@ public class GM_Parkour : MonoBehaviour
 			goldTime = finish.GetProperty<GoldMedalProperty>()?.Value ?? 0;
 			shinyTime = finish.GetProperty<ShinyMedalProperty>()?.Value ?? 0;
 		}
-		MedalType newMedal = timePassed >= bronzeTime ? MedalType.None
-			: timePassed >= silverTime ? MedalType.Bronze
-			: timePassed >= goldTime ? MedalType.Silver
-			: timePassed >= shinyTime ? MedalType.Golden
+		return time >= bronzeTime ? MedalType.None
+			: time >= silverTime ? MedalType.Bronze
+			: time >= goldTime ? MedalType.Silver
+			: time >= shinyTime ? MedalType.Golden
 			: MedalType.Shiny;
+		
+	}
+	public static float TimeFromMedal(MedalType medal)
+	{
+		MapObjectData finish = GM_Parkour.instance.selectedMap.MapObjects.FirstOrDefault(mod => mod.GetProperty<GoldMedalProperty>() != null);
+		float bronzeTime = 0f;
+		float silverTime = 0f;
+		float goldTime = 0f;
+		float shinyTime = 0f;
+		if (finish != null)
+		{
+			bronzeTime = finish.GetProperty<BronzeMedalProperty>()?.Value ?? 0;
+			silverTime = finish.GetProperty<SilverMedalProperty>()?.Value ?? 0;
+			goldTime = finish.GetProperty<GoldMedalProperty>()?.Value ?? 0;
+			shinyTime = finish.GetProperty<ShinyMedalProperty>()?.Value ?? 0;
+		}
+		switch (medal)
+		{
+			case MedalType.None:
+			return Mathf.Infinity;
+			case MedalType.Bronze:
+			return bronzeTime;
+			case MedalType.Silver:
+			return silverTime;
+			case MedalType.Golden:
+			return goldTime;
+			case MedalType.Shiny:
+			return shinyTime;
+			default:
+			return 0;
+		}
+	}
+	public static string RichTextMedalColor(MedalType medal, string text)
+	{
+		switch (medal)
+		{
+			case MedalType.None:
+				return text;
+			case MedalType.Bronze:
+				return "<color=#950f>"+text+"</color>";
+			case MedalType.Silver:
+				return "<color=#99Cf>"+text+"</color>";
+			case MedalType.Golden:
+				return "<color=#DFDF00ff>"+text+"</color>";
+			case MedalType.Shiny:
+				return "<color=#FFFF00ff>"+text+"</color>";
+			default:
+				return text;
+
+		}
+	}
+	public static void OpenParkourWinMenu()
+	{
+		var mainMenu = GameObject.Find("/Game/UI/UI_MainMenu/Canvas/ListSelector/Main/Group");
+		mainMenu.transform.position = new Vector3(0,0,0); 
+		
+		if (LopisParkour.parkourWinMenu == null)
+		{
+			return;
+		}
+		
+		MainMenuHandler.instance.Open();
+		
+		LopisParkour.parkourWinMenu.GetComponent<ListMenuPage>().Open();
+		LopisParkour.parkourWinMenu.GetComponentInChildren<ScrollRect>().verticalNormalizedPosition = 1f;
+		var contents = LopisParkour.parkourWinMenu.transform.Find("Group/Grid/Scroll View/Viewport/Content");
+		if (contents) foreach(Transform child in contents)
+		{
+			Destroy(child.gameObject);
+		}
+
+		ParkourProgressEntry? prevEntry = LopisParkour.GetRecord(GM_Parkour.instance.selectedMap.id) ?? new ParkourProgressEntry();
+		// float prevTime = prevEntry == null ? -1 : prevEntry.time;
+		// MedalType prevMedal = prevEntry == null ? MedalType.none : prevEntry.medal;
+		
+		MedalType newMedal = WhatMedalIsIt(timePassed);
 
 		TextMeshProUGUI pbText;
 		TextMeshProUGUI timeDiff;
@@ -256,9 +389,10 @@ public class GM_Parkour : MonoBehaviour
 		if ((prevEntry.time == -1 || prevEntry.time > timePassed) && timePassed != 0)
 		{
 			if (prevEntry.medal < newMedal)
-					MenuHandler.CreateText(newMedal.ToString() + " Medal!", LopisParkour.parkourWinMenu, out pbText, 100);
+					MenuHandler.CreateText(RichTextMedalColor(newMedal, newMedal.ToString() + " Medal!"), LopisParkour.parkourWinMenu, out pbText, 100);
 			else
-				MenuHandler.CreateText("New Personal Best!", LopisParkour.parkourWinMenu, out pbText, 100);
+				MenuHandler.CreateText(RichTextMedalColor(newMedal, "Personal Best!"), LopisParkour.parkourWinMenu, out pbText, 100);
+			SoundPlayerStatic.Instance.PlayMatchFound();
 			LopisParkour.AddRecord(GM_Parkour.instance.selectedMap.id, timePassed, newMedal);
 		}
 		else
@@ -268,7 +402,7 @@ public class GM_Parkour : MonoBehaviour
 
 		if (timePassed != 0)
 		{
-			MenuHandler.CreateText(TimeSpan.FromSeconds(timePassed).ToString("mm\\:ss\\.fff"), LopisParkour.parkourWinMenu, out timeText, 80);
+			MenuHandler.CreateText(RichTextMedalColor(newMedal, TimeSpan.FromSeconds(timePassed).ToString("mm\\:ss\\.fff")), LopisParkour.parkourWinMenu, out timeText, 80);
 		}
 		else
 		{
@@ -290,94 +424,88 @@ public class GM_Parkour : MonoBehaviour
 		}
 
 		float bestTime = prevEntry.time == -1 ? timePassed : Mathf.Min(timePassed, prevEntry.time);
-		if (timePassed > shinyTime)
+
+        MedalType nextMedal = (MedalType)((int)(newMedal + 1) % Enum.GetValues(typeof(MedalType)).Length);
+		float nextMedalTime = TimeFromMedal(nextMedal);
+
+		if (nextMedal != MedalType.None && nextMedal != MedalType.Shiny) MenuHandler.CreateText(
+				"next medal: "
+				+ nextMedal.ToString() + " "
+				+ TimeSpan.FromSeconds(nextMedalTime).ToString("mm\\:ss\\.fff")
+				+" (" +(timePassed < nextMedalTime ? "-" : "+")
+				+ TimeSpan.FromSeconds(timePassed - nextMedalTime).ToString("mm\\:ss\\.fff") + ")"
+				, LopisParkour.parkourWinMenu, out _, 40, false);
+		else  if(nextMedal == MedalType.None) 
 		{
-			MedalType nextMedal = MedalType.None;
-			float nextMedalTime = -1f;
-
-			if (bestTime > bronzeTime && bronzeTime != 0)
-			{
-				nextMedal = MedalType.Bronze;
-				nextMedalTime = bronzeTime;
-			}
-			else if (bestTime > silverTime && silverTime != 0)
-			{
-				nextMedal = MedalType.Silver;
-				nextMedalTime = silverTime;
-			}
-			else if (bestTime > goldTime && goldTime != 0)
-			{
-				nextMedal = MedalType.Golden;
-				nextMedalTime = goldTime;
-			}
-			else if (bestTime > shinyTime && shinyTime != 0)
-			{
-				nextMedal = MedalType.Shiny;
-				nextMedalTime = shinyTime;
-			}
-			
-			if (nextMedal != MedalType.None && nextMedal != MedalType.Shiny) MenuHandler.CreateText(
-					"next medal: "
-					+ nextMedal.ToString() + " "
-					+ TimeSpan.FromSeconds(nextMedalTime).ToString("mm\\:ss\\.fff")
-					+" (" +(timePassed < nextMedalTime ? "-" : "+")
-					+ TimeSpan.FromSeconds(timePassed - nextMedalTime).ToString("mm\\:ss\\.fff") + ")"
-					, LopisParkour.parkourWinMenu, out _, 40, false);
-			else  if(nextMedal == MedalType.None) 
-			{
-				MenuHandler.CreateText("No medals left to get", LopisParkour.parkourWinMenu, out _, 40, false);
-			}
-			else MenuHandler.CreateText(" ", LopisParkour.parkourWinMenu, out _, 40, false);
+			MenuHandler.CreateText("No medals left to get", LopisParkour.parkourWinMenu, out _, 40, false);
 		}
+		else MenuHandler.CreateText(" ", LopisParkour.parkourWinMenu, out _, 40, false);
 
-		MenuHandler.CreateButton("Improve", LopisParkour.parkourWinMenu, ()=>{
+		MenuHandler.CreateButton("Improve [R]", LopisParkour.parkourWinMenu, ()=>{
 			TimeHandler.instance.gameOverTime = 1f;
 			MainMenuHandler.instance.Close();
 			var gm = (GM_Parkour) GameModeManager.CurrentHandler.GameMode;
 			gm.reloadMap();
 		});
 
-		CustomMap targetMap = getNextMap();
+		CustomMap? targetMap = getNextMap();
 
-		GameObject? rateMenu = null;
-		rateMenu = MenuHandler.CreateMenu("RateTheMap", () => {
-			MenuHandler.CreateText("Please rate the map you just played:", rateMenu, out _ );
-			MenuHandler.CreateText(" ", rateMenu, out _ );
-			MenuHandler.CreateButton(("Bad and i hate it"), rateMenu, ()=>{
-				LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 1);
-				TimeHandler.instance.gameOverTime = 1f;
-				MainMenuHandler.instance.Close();
-				GM_Parkour.instance.selectedMap = targetMap;
-			});
-			MenuHandler.CreateButton(("It's aight"), rateMenu, ()=>{
-				LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 2);
-				TimeHandler.instance.gameOverTime = 1f;
-				MainMenuHandler.instance.Close();
-				GM_Parkour.instance.selectedMap = targetMap;
-			});
-			MenuHandler.CreateButton(("Good one"), rateMenu, ()=>{
-				LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 3);
-				TimeHandler.instance.gameOverTime = 1f;
-				MainMenuHandler.instance.Close();
-				GM_Parkour.instance.selectedMap = targetMap;
-			});
+		// GameObject? rateMenu = null;
+		// rateMenu = MenuHandler.CreateMenu("RateTheMap", () => {
+		// 	MenuHandler.CreateText("Please rate the map you just played:", rateMenu, out _ );
+		// 	MenuHandler.CreateText(" ", rateMenu, out _ );
+		// 	MenuHandler.CreateButton(("Bad and i hate it"), rateMenu, ()=>{
+		// 		LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 1);
+		// 		TimeHandler.instance.gameOverTime = 1f;
+		// 		MainMenuHandler.instance.Close();
+		// 		GM_Parkour.instance.selectedMap = targetMap;
+		// 	});
+		// 	MenuHandler.CreateButton(("It's aight"), rateMenu, ()=>{
+		// 		LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 2);
+		// 		TimeHandler.instance.gameOverTime = 1f;
+		// 		MainMenuHandler.instance.Close();
+		// 		GM_Parkour.instance.selectedMap = targetMap;
+		// 	});
+		// 	MenuHandler.CreateButton(("Good one"), rateMenu, ()=>{
+		// 		LopisParkour.RateMap(GM_Parkour.instance.selectedMap.id, 3);
+		// 		TimeHandler.instance.gameOverTime = 1f;
+		// 		MainMenuHandler.instance.Close();
+		// 		GM_Parkour.instance.selectedMap = targetMap;
+		// 	});
 
-		}, LopisParkour.parkourWinMenu, out var rateMenuButton);
+		// }, LopisParkour.parkourWinMenu, out var rateMenuButton);
 
 
-		GameObject? saveReplayButton = null;
-		saveReplayButton = MenuHandler.CreateButton("Save replay", LopisParkour.parkourWinMenu, ()=>{
-			recorder.SaveReplay();
-			saveReplayButton.GetComponentInChildren<TextMeshProUGUI>().text = "saved";
-		});
-
-		rateMenuButton.GetComponentInChildren<TextMeshProUGUI>().text = targetMap == null ? "no more maps in this pack" : "next map (" + mapToName(targetMap) + ")";
-		// MenuHandler.CreateButton("Next map: " + mapToName(targetMap), LopisParkour.parkourWinMenu, ()=>{
-		// 	TimeHandler.instance.gameOverTime = 1f;
-		// 	MainMenuHandler.instance.Close();
-		// 	GM_Parkour.instance.selectedMap = targetMap;
+		// GameObject? saveReplayButton = null;
+		// saveReplayButton = MenuHandler.CreateButton("Save replay", LopisParkour.parkourWinMenu, ()=>{
+		// 	recorder.SaveReplay();
+		// 	saveReplayButton.GetComponentInChildren<TextMeshProUGUI>().text = "saved";
 		// });
 
+		// rateMenuButton.GetComponentInChildren<TextMeshProUGUI>().text = targetMap == null ? "no more maps in this pack" : "next map (" + mapToName(targetMap) + ")";
+
+
+
+
+
+
+		var nextMapButton = MenuHandler.CreateButton(targetMap == null ? "Get more maps" : "Next map: " + mapToName(targetMap), LopisParkour.parkourWinMenu, ()=>{
+		// 		TimeHandler.instance.gameOverTime = 1f;
+		// 		MainMenuHandler.instance.Close();
+		// 		GM_Parkour.instance.selectedMap = targetMap;
+			TimeHandler.instance.gameOverTime = 1f;
+			MainMenuHandler.instance.Close();
+			if (targetMap != null) GM_Parkour.instance.selectedMap = targetMap;
+			else {
+					Application.OpenURL("https://thunderstore.io/c/rounds/p/lopidav/Lopis_Parkour/dependants/?q=&ordering=top-rated&section=mods&included_categories=131");
+					MainMenuHandler.instance.Open();
+					LopisParkour.ExitParkourGamemode();
+				}
+		});
+		// nextMapButton.SetActive(targetMap != null);
+
+
+		// WinMenuShowLeaderboard();
 
 		// GM_Parkour.instance.StartCoroutine(MapManager.instance.UnloadAfterSeconds(MapManager.instance.currentMap.Scene));
 		// MapManager.instance.UnloadScene(MapManager.instance.currentMap.Scene);
@@ -386,7 +514,108 @@ public class GM_Parkour : MonoBehaviour
 		// loadMapThroughExtended(pair.Value);
 
 	}
-	
+	public static void WinMenuShowLeaderboard()
+	{
+		if (LeaderboardText == null)
+		{
+			LeaderboardText = MenuHandler.CreateTextAt("", new Vector2());
+			LeaderboardText.transform.SetParent(LopisParkour.parkourWinMenu.transform.Find("Group"));
+			LeaderboardText.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+			LeaderboardText.rectTransform.localScale = new Vector3(1f,1f,1f);
+			LeaderboardText.transform.position = new Vector3(-30, 15,0);
+			LeaderboardText.fontSize = 20;
+			LeaderboardText.color = new Color(255,255,255,200);
+			LeaderboardText.alignment = TextAlignmentOptions.TopLeft;
+		}
+		
+		if (pauseLeaderboardText == null)
+		{
+			pauseLeaderboardText = MenuHandler.CreateTextAt("", new Vector2());
+			pauseLeaderboardText.transform.SetParent(LopisParkour.pauseMenu.transform);
+			pauseLeaderboardText.gameObject.AddComponent<LayoutElement>().ignoreLayout = true;
+			pauseLeaderboardText.rectTransform.localScale = new Vector3(1f,1f,1f);
+			pauseLeaderboardText.transform.position = new Vector3(-30, 15,0);
+			pauseLeaderboardText.fontSize = 20;
+			pauseLeaderboardText.color = new Color(255,255,255,200);
+			pauseLeaderboardText.alignment = TextAlignmentOptions.TopLeft;
+		}
+		if (LeaderboardText == null || pauseLeaderboardText == null) {LopisParkour.Log("failed to create leaderboard object");return;}
+		LopisParkour.Log(GM_Parkour.instance._selectedMap.id);
+		if (GM_Parkour.instance._selectedMap.id.StartsWith(BepInEx.Paths.GameRootPath))
+		{
+			LeaderboardText.text = "";
+			return;
+		}
+		var latestRecord = GlobalLeaderboard.GetMyRecordForMap(LopisParkour.pathToId(GM_Parkour.instance._selectedMap.id));
+		MapObjectData finish = GM_Parkour.instance.selectedMap.MapObjects.FirstOrDefault(mod => mod.GetProperty<GoldMedalProperty>() != null);
+		float bronzeTime = 0f;
+		float silverTime = 0f;
+		float goldTime = 0f;
+		float shinyTime = 0f;
+		if (finish != null)
+		{
+			bronzeTime = finish.GetProperty<BronzeMedalProperty>()?.Value ?? 0;
+			silverTime = finish.GetProperty<SilverMedalProperty>()?.Value ?? 0;
+			goldTime = finish.GetProperty<GoldMedalProperty>()?.Value ?? 0;
+			shinyTime = finish.GetProperty<ShinyMedalProperty>()?.Value ?? 0;
+		}
+		if (goldTime + shinyTime <= 0 || latestRecord == null || latestRecord.time > goldTime)
+		{
+			LeaderboardText.text = "Get gold to unlock Leaderboards for this map";
+			pauseLeaderboardText.text = "Get gold to unlock Leaderboards for this map";
+			return;
+		}
+		if (GlobalLeaderboard.isUpdating)
+		{
+			LeaderboardText.text = "Leaderboard (loading...)\n";
+			pauseLeaderboardText.text = "Leaderboard (loading...)\n";
+		}
+		else
+		{
+			LeaderboardText.text = "Leaderboard\n";
+			pauseLeaderboardText.text = "Leaderboard\n";
+		}
+
+		// LeaderboardText.rectTransform.localScale = new Vector3(1f,1f,1f);
+		var leaderboard = GlobalLeaderboard.GetLeaderboardForMap(LopisParkour.pathToId(GM_Parkour.instance.selectedMap.id));
+		// LopisParkour.Log("Leaderboard:");
+		// LopisParkour.Log(String.Join("\n", leaderboard.Select(x=>x.ToString())));
+		var myId = SteamUser.GetSteamID().ToString();
+		var recordString = "";
+		var i = 0;
+		var myPos = leaderboard.FindIndex(x=>x.id == myId);
+		var cutoff = 15;
+		var halo = 2;
+		var tempString = "";
+		leaderboard.ForEach(x=>{
+			i++;
+			if (i <= cutoff || System.Math.Abs(myPos - i) <= halo)
+			{
+				if (i%2 != 0) recordString += "<mark=#FFFFFF05>";
+
+				tempString = i + " " + Regex.Replace(x.name,"<.+?>","",RegexOptions.Multiline);
+				if (tempString.Length > 30) tempString = tempString.Substring(0, 30) + "...";
+				tempString += "\t" + TimeSpan.FromSeconds(x.time).ToString("mm\\:ss\\.fff");
+
+				recordString += x.id != myId ? tempString : "<color=orange>" + tempString +"</color>";
+				recordString += "\n";
+				if (i%2 != 0) recordString += "</mark>";
+			}
+			else if (i == cutoff+1)
+			{
+				recordString += "...";
+				recordString += "\n";
+			}
+			else if (i == myPos + halo + 1)
+			{
+				recordString += "...";
+				recordString += "\n";
+			}
+		});
+		LeaderboardText.text += recordString;
+		pauseLeaderboardText.text += recordString;
+		// GlobalLeaderboard.onLeaderboardDownload -= WinMenuShowLeaderboard;
+	}
 	public void LoadSelectedMap()
 	{
 		if (selectedMap == null) return;
@@ -396,9 +625,9 @@ public class GM_Parkour : MonoBehaviour
 		// MapManager.instance.SetCurrentCustomMap(this.selectedMap);
 		// ArtHandler.instance.NextArt();
 		// LopisParkour.instance.loadMapThroughExtended(selectedMap);
-
 		SceneManager.sceneLoaded += OnLevelFinishedLoading; 
-		MapManager.instance.view.RPC("RPCA_SetCallInNextMap", RpcTarget.All, true);
+		// MapManager.instance.view.RPC("RPCA_SetCallInNextMap", RpcTarget.All, true);
+		MapManager.instance.RPCA_SetCallInNextMap(true);
 		MapManager.instance.view.RPC("RPCA_LoadLevel", RpcTarget.All, $"MapsExtended:{selectedMap._id}");
 		PlayerAssigner.instance.SetPlayersCanJoin(canJoin: true);
 		timerStop = false;
@@ -407,14 +636,35 @@ public class GM_Parkour : MonoBehaviour
 			LopisParkour.pauseMenu.GetComponentInParent<EscapeMenuHandler>().ToggleEsc();
 		}
 		pauseNextMapButtonUpdate();
+		WinMenuShowLeaderboard();
+
+		var PBGhostPath = Path.Combine(Paths.GameRootPath, "ParkourReplays", LopisParkour.pathToId(_selectedMap.id).Replace('\\','_')+"PB.prkr");
+		if (File.Exists(PBGhostPath))
+		{
+			GhostReplayRecord record = SerializationUtility.DeserializeValue<GhostReplayRecord>(File.ReadAllBytes(PBGhostPath), DataFormat.Binary);
+			
+			ghostPlayer = this.gameObject.GetOrAddComponent<GhostReplayPlayer>();
+			ghostPlayer.Reset();
+			ghostPlayer.replayRecord = record;
+			ghostPlayer.enabled = ghostEnabled;
+		}
 		// MapTransition.instance.Enter(MapManager.instance.currentMap.Map);
 		// NetworkingManager.RPC(typeof(TRTMapManager), nameof(RPCA_SetCurrentLevel), TRTMapManager.CurrentLevel);
 	}
 	public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
-		if (MapManager.instance.currentMap != null)
+		PlayerManager.instance.RemovePlayers();
+		PlayerManager.instance.ResetCharacters();
+		if (MapManager.instance.currentMap != null && MapManager.instance.currentMap.Scene != null)
 		{
-			SceneManager.UnloadSceneAsync(MapManager.instance.currentMap.Scene);
+			try
+			{
+				SceneManager.UnloadSceneAsync(MapManager.instance.currentMap.Scene);
+			}
+			catch (Exception ex)
+			{
+				LopisParkour.Log(ex);
+			}
 		}
 		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
 	}
@@ -439,6 +689,7 @@ public class GM_Parkour : MonoBehaviour
 	private void PlayerDied(Player player, int unused)
 	{
 		LopisParkour.Log("PlayerDied");
+		if (MapTransition.isTransitioning) return;
 		reloadMap();
 		// StartCoroutine(DelayRevive(player));
 	}

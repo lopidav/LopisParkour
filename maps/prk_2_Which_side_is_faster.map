@@ -1,7 +1,7 @@
 {
     "$id": 0,
     "$type": "0|MapsExt.CustomMap, MapsExtended",
-    "_id": "95c20689-2c88-4781-880d-7e99ef078ab8",
+    "_id": "7920e1c0-5933-4833-9c35-42b0e6a1ee59",
     "_name": "prk_2_Which_side_is_faster",
     "_version": "1.4.2",
     "_settings": {
@@ -141,7 +141,7 @@
                 "_gold": {
                     "$id": 22,
                     "$type": "11|LopisParkourNS.GoldMedalProperty, LopisParkour",
-                    "_goldMedalTime": 3.1
+                    "_goldMedalTime": 3
                 },
                 "_silver": {
                     "$id": 23,
@@ -156,7 +156,7 @@
                 "_shiny": {
                     "$id": 25,
                     "$type": "14|LopisParkourNS.ShinyMedalProperty, LopisParkour",
-                    "_ShinyMedalTime": 2.85
+                    "_ShinyMedalTime": 2.7
                 }
             }
         ]

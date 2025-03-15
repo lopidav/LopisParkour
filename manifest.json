@@ -1,10 +1,12 @@
 {
-  "name": "Lopi's_Parkour",
+  "name": "Lopis_Parkour",
   "author": "lopidav",
-  "version_number": "0.1.4",
-  "website_url": "https://discord.com/users/357116721812865025",
-  "description": "Parkour!",
+  "version_number": "1.0.3",
+  "website_url": "https://www.youtube.com/@RoundsParkour",
+  "description": "A conversion mod that remakes ROUNDS into more traditional singleplayer platformer. Please make a new profile before installing.",
   "dependencies": [
-    "woukie-MapImageObjectsEditor-1.2.3"
+    "woukie-MapImageObjectsEditor-1.2.3",
+    "olavim-MapsExtendedEditor-1.4.2",
+    "willis81808-UnboundLib-3.2.14"
   ]
 }

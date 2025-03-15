@@ -46,7 +46,7 @@ if len(found_csprojs) != 1:
     raise RuntimeError("Can't find .csproj file")
 with open(found_csprojs[0], encoding="utf-8") as f:
     root = ET.parse(f).getroot()
-    MOD_ID = "lopidav-Lopi's_Parkour"
+    MOD_ID = "lopidav-Lopis_Parkour"
     DLL_NAME = f"{root.find('./PropertyGroup/AssemblyName').text}.dll"
     MOD_DLL = MOD_BIN / DLL_NAME
     MOD_PATH = MODS_ROOT / MOD_ID

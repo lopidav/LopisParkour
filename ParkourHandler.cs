@@ -59,10 +59,7 @@ public class ParkourHandler : GameModeHandler<GM_Parkour>
 
 	public override void SetActive(bool active)
 	{
-		if (!active)
-		{
-			base.GameMode.gameObject.SetActive(active);
-		}
+		base.GameMode.gameObject.SetActive(active);
 	}
 
 	public override void StartGame()
@@ -75,6 +72,7 @@ public class ParkourHandler : GameModeHandler<GM_Parkour>
 	public override void ResetGame()
 	{
 		LopisParkour.Log("ResetGame");
+		base.GameMode.gameObject.SetActive(value: false);
 		// PlayerManager.instance.InvokeMethod("ResetCharacters");
 	}
 }

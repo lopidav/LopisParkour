@@ -7,6 +7,7 @@ using MapsExt.Editor.Properties;
 using MapsExt.Properties;
 using MapsExt.Editor.UI;
 using UnityEngine.UI;
+using UnboundLib.Utils;
 
 namespace LopisParkourNS;
 
@@ -69,6 +70,7 @@ public class CardNameElement : IInspectorElement
 		child3.gameObject.GetComponent<Text>().text = "Name";
 		input = gameObject.GetComponentInChildren<InputField>();
 		input.onValueChanged.AddListener(OnChanged);
+		input.onEndEdit.AddListener(onEndEdit);
 		return gameObject;
 	}
 
@@ -80,9 +82,50 @@ public class CardNameElement : IInspectorElement
 	private void OnChanged(string str)
 	{
 		CardNameProperty cardNameProperty = new CardNameProperty();
+
 		cardNameProperty.cardName = str;
 		context.InspectorTarget.WriteProperty(cardNameProperty);
 		context.Editor.TakeSnaphot();
+	}
+	private void onEndEdit(string str)
+	{
+		CardNameProperty cardNameProperty = new CardNameProperty();
+		CardInfo? ourCard = null;
+		ourCard = CardManager.GetCardInfoWithName(str);
+		if (ourCard == null)
+		{
+			CardInfo[] cards = CardManager.allCards;
+			int num = -1;
+			float num2 = 0f;
+			for (int i = 0; i < cards.Length; i++)
+			{
+				string text = cards[i].GetComponent<CardInfo>().cardName.ToUpper();
+				text = text.Replace(" ", "");
+				string text2 = str.ToUpper();
+				text2 = text2.Replace(" ", "");
+				float num3 = 0f;
+				for (int j = 0; j < text2.Length; j++)
+				{
+					if (text.Length > j && text2[j] == text[j])
+					{
+						num3 += 1f / (float)text2.Length;
+					}
+				}
+				num3 -= (float)Mathf.Abs(text2.Length - text.Length) * 0.001f;
+				if (num3 > 0.1f && num3 > num2)
+				{
+					num2 = num3;
+					num = i;
+				}
+			}
+			if (num != -1) ourCard = cards[num];
+		}
+		if (ourCard != null)
+		{
+			cardNameProperty.cardName = ((UnityEngine.Object)((Component)ourCard).gameObject).name;
+			context.InspectorTarget.WriteProperty(cardNameProperty);
+			context.Editor.TakeSnaphot();
+		}
 	}
 }
 

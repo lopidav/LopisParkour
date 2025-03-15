@@ -1,7 +1,7 @@
 {
     "$id": 0,
     "$type": "0|MapsExt.CustomMap, MapsExtended",
-    "_id": "0e66afba-3d85-470b-b771-c51c94a72130",
+    "_id": "6365de3f-f2bf-4af4-aa5e-a06328c7ffe4",
     "_name": "prk_3_Infinite_coyote",
     "_version": "1.4.2",
     "_settings": {
@@ -145,7 +145,7 @@
                 "_gold": {
                     "$id": 23,
                     "$type": "11|LopisParkourNS.GoldMedalProperty, LopisParkour",
-                    "_goldMedalTime": 2.3
+                    "_goldMedalTime": 2.2
                 },
                 "_silver": {
                     "$id": 24,
@@ -160,7 +160,7 @@
                 "_shiny": {
                     "$id": 26,
                     "$type": "14|LopisParkourNS.ShinyMedalProperty, LopisParkour",
-                    "_ShinyMedalTime": 2.1
+                    "_ShinyMedalTime": 2
                 }
             },
             {

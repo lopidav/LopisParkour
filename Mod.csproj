@@ -9,8 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="InControl">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/InControl.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.TextCoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>$(ROUNDS)/Rounds_Data/Managed/UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(ROUNDS)/Rounds_Data/Managed/Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
@@ -56,6 +76,10 @@
     </Reference>
     <Reference Include="PhotonUnityNetworking">
       <HintPath>$(ROUNDS)/Rounds_Data/Managed/PhotonUnityNetworking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MMHOOK_Assembly-CSharp">
+      <HintPath>MMHOOK_Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MapsExtended">

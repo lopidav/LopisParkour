@@ -4,6 +4,7 @@ using UnityEngine;
 using UnboundLib;
 using System.Collections;
 using MapsExt.Properties;
+using UnboundLib.Utils;
 
 namespace LopisParkourNS;
 public class StarterCardMono : MonoBehaviour
@@ -55,40 +56,62 @@ public class StarterCardMono : MonoBehaviour
     public virtual void Start()
     {
 		if (!enabled) return;
-
-		CardInfo[] cards = CardChoice.instance.cards;
-		int num = -1;
-		float num2 = 0f;
-			LopisParkour.Log(this.starterCard);
-		for (int i = 0; i < cards.Length; i++)
+		LopisParkour.instance.ExecuteAfterFrames(5, ()=>{
+			this.addTheCard();
+		});
+		
+	}
+	public void addTheCard()
+	{
+		if (!enabled) return;
+		CardInfo? ourCard = null;
+		ourCard = CardManager.GetCardInfoWithName(this.starterCard);
+		if (ourCard == null)
 		{
-			string text = cards[i].GetComponent<CardInfo>().cardName.ToUpper();
-			text = text.Replace(" ", "");
-			string text2 = this.starterCard.ToUpper();
-			text2 = text2.Replace(" ", "");
-			float num3 = 0f;
-			for (int j = 0; j < text2.Length; j++)
+			CardInfo[] cards = CardChoice.instance.cards;
+			int num = -1;
+			float num2 = 0f;
+			for (int i = 0; i < cards.Length; i++)
 			{
-				if (text.Length > j && text2[j] == text[j])
+				string text = cards[i].GetComponent<CardInfo>().cardName.ToUpper();
+				text = text.Replace(" ", "");
+				string text2 = this.starterCard.ToUpper();
+				text2 = text2.Replace(" ", "");
+				float num3 = 0f;
+				for (int j = 0; j < text2.Length; j++)
 				{
-					num3 += 1f / (float)text2.Length;
+					if (text.Length > j && text2[j] == text[j])
+					{
+						num3 += 1f / (float)text2.Length;
+					}
+				}
+				num3 -= (float)Mathf.Abs(text2.Length - text.Length) * 0.001f;
+				if (num3 > 0.1f && num3 > num2)
+				{
+					num2 = num3;
+					num = i;
 				}
 			}
-			num3 -= (float)Mathf.Abs(text2.Length - text.Length) * 0.001f;
-			if (num3 > 0.1f && num3 > num2)
-			{
-				num2 = num3;
-				num = i;
-			}
+			if (num != -1) ourCard = cards[num];
 		}
-		if (num == -1) return;
-		GameObject obj = CardChoice.instance.AddCard(cards[num]);
+
+		if (ourCard == null) {LopisParkour.Log("starter card not found:"+ starterCard);return;}
+		
+		GameObject obj = CardChoice.instance.AddCard(ourCard);
 		obj.GetComponentInChildren<CardVisuals>().firstValueToSet = true;
 		obj.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+		obj.transform.GetChild(0).localScale = new Vector3(9.5536f, 9.5536f, 9.5536f);
+		obj.transform.position = (LopisParkour.cameraHandlerInstance?._targetSize ?? 20f)*(28.5f * Vector3.right + 11 * Vector3.up + 9.5f * Vector3.left * CardChoice.instance.spawnedCards.IndexOf(obj))/20;
+		
 		// var cardBar = GameObject.Find("/Game/UI/UI_Game/Canvas/CardViz/Pointer");
 		// if (cardBar!= null) obj.transform.position = 9 * Vector3.right + 7 * Vector3.down + cardBar.transform.position + 9.5f * Vector3.left * CardChoice.instance.spawnedCards.Count();
-		obj.transform.position = 38 * Vector3.right + 11 * Vector3.up + 9.5f * Vector3.left * CardChoice.instance.spawnedCards.Count();
+		
+
 		pendingCardObjects.Add(obj);
+		// setCardPositions();
+		// LopisParkour.instance.ExecuteAfterFrames(5,setCardPositions);
+		// LopisParkour.instance.ExecuteAfterSeconds(3,setCardPositions);
+		LopisParkour.Log("found starter card: "+ourCard.cardName);
 		// obj.GetComponentInChildren<CardVisuals>().firstValueToSet = true;
 		// effectedPlayers.Add(player);
 		// DelayedPick(obj, player.playerID);
@@ -97,6 +120,15 @@ public class StarterCardMono : MonoBehaviour
 		// PlayerManager.instance.PlayerJoinedAction += PlayerWasAdded;//(Action<Player>)Delegate.Combine(playerManager.PlayerJoinedAction, new Action<Player>(PlayerWasAdded));
 		// DevConsole.SpawnCard(this.starterCard);
 		
+	}
+	public void setCardPositions()
+	{
+		pendingCardObjects.ForEach(obj => {
+				if(obj == null) return;
+				obj.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+				// LopisParkour.cameraHandlerInstance?.UpdateTargets();
+				obj.transform.position = (LopisParkour.cameraHandlerInstance?._targetSize ?? 20f)*(28.5f * Vector3.right + 11 * Vector3.up + 9.5f * Vector3.left * CardChoice.instance.spawnedCards.IndexOf(obj))/20;
+		});
 	}
 	public virtual void onDisable()
 	{

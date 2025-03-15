@@ -1,0 +1,1227 @@
+{
+    "$id": 0,
+    "$type": "0|MapsExt.CustomMap, MapsExtended",
+    "_id": "96c59711-5431-460b-8f1b-7e81ae0b298e",
+    "_name": "prk_15_Spiral",
+    "_version": "1.4.2",
+    "_settings": {
+        "$id": 1,
+        "$type": "1|MapsExt.CustomMapSettings, MapsExtended",
+        "_mapSize": {
+            "$type": "2|UnityEngine.Vector2, UnityEngine.CoreModule",
+            1920,
+            1080
+        },
+        "_viewportHeight": 1080
+    },
+    "_mapObjects": {
+        "$id": 2,
+        "$type": "3|MapsExt.MapObjects.MapObjectData[], MapsExtended",
+        "$rlength": 36,
+        "$rcontent": [
+            {
+                "$id": 3,
+                "$type": "4|LopisParkourNS.FinishData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 4,
+                    "$type": "5|MapsExt.Properties.PositionProperty, MapsExtended",
+                    "_x": -0.5,
+                    "_y": 2.75
+                },
+                "_scale": {
+                    "$id": 5,
+                    "$type": "6|MapsExt.Properties.ScaleProperty, MapsExtended",
+                    "_x": 2,
+                    "_y": 2
+                },
+                "_rotation": {
+                    "$id": 6,
+                    "$type": "7|MapsExt.Properties.RotationProperty, MapsExtended",
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 7,
+                    "$type": "8|MapsExt.AnimationKeyframe[], MapsExtended",
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                },
+                "_gold": {
+                    "$id": 8,
+                    "$type": "9|LopisParkourNS.GoldMedalProperty, LopisParkour",
+                    "_goldMedalTime": 14
+                },
+                "_silver": {
+                    "$id": 9,
+                    "$type": "10|LopisParkourNS.SilverMedalProperty, LopisParkour",
+                    "_SilverMedalTime": 15.5
+                },
+                "_bronze": {
+                    "$id": 10,
+                    "$type": "11|LopisParkourNS.BronzeMedalProperty, LopisParkour",
+                    "_BronzeMedalTime": 30
+                },
+                "_shiny": {
+                    "$id": 11,
+                    "$type": "12|LopisParkourNS.ShinyMedalProperty, LopisParkour",
+                    "_ShinyMedalTime": 0
+                }
+            },
+            {
+                "$id": 12,
+                "$type": "13|MapsExt.MapObjects.GroundData, MapsExtended",
+                "_active": true,
+                "_position": {
+                    "$id": 13,
+                    "$type": 5,
+                    "_x": 4.625,
+                    "_y": -0.5
+                },
+                "_scale": {
+                    "$id": 14,
+                    "$type": 6,
+                    "_x": 14.75,
+                    "_y": 1
+                },
+                "_rotation": {
+                    "$id": 15,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 16,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 17,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 18,
+                    "$type": 5,
+                    "_x": -4.125,
+                    "_y": 2.75
+                },
+                "_scale": {
+                    "$id": 19,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 7.5
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 20,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 21,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 22,
+                    "$type": 5,
+                    "_x": 8,
+                    "_y": 6
+                },
+                "_scale": {
+                    "$id": 23,
+                    "$type": 6,
+                    "_x": 21.5,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 24,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 25,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 26,
+                    "$type": 5,
+                    "_x": 17.375,
+                    "_y": -0.875
+                },
+                "_scale": {
+                    "$id": 27,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 12.75
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 28,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 29,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 30,
+                    "$type": 5,
+                    "_x": 1.5,
+                    "_y": -6.75
+                },
+                "_scale": {
+                    "$id": 31,
+                    "$type": 6,
+                    "_x": 29,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 32,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 33,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 34,
+                    "$type": 5,
+                    "_x": -11.625,
+                    "_y": 3.375
+                },
+                "_scale": {
+                    "$id": 35,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 19.25
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 36,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 37,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 38,
+                    "$type": 5,
+                    "_x": 7.875,
+                    "_y": 12.5
+                },
+                "_scale": {
+                    "$id": 39,
+                    "$type": 6,
+                    "_x": 36.25,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 40,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 41,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 42,
+                    "$type": 5,
+                    "_x": 24.625,
+                    "_y": -1.25
+                },
+                "_scale": {
+                    "$id": 43,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 26.5
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 44,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 45,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 46,
+                    "$type": 5,
+                    "_x": -1,
+                    "_y": -14
+                },
+                "_scale": {
+                    "$id": 47,
+                    "$type": 6,
+                    "_x": 48.5,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 48,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 49,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 50,
+                    "$type": 5,
+                    "_x": -23.875,
+                    "_y": 3.25
+                },
+                "_scale": {
+                    "$id": 51,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 33.5
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 52,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 53,
+                "$type": "14|MapsExt.MapObjects.SpawnData, MapsExtended",
+                "_active": true,
+                "_spawnId": 0,
+                "_spawnTeamId": 0,
+                "_position": {
+                    "$type": 2,
+                    12.75,
+                    14.75
+                }
+            },
+            {
+                "$id": 54,
+                "$type": "15|LopisParkourNS.DamageRectData, LopisParkour",
+                "_active": true,
+                "_position": {
+                    "$id": 55,
+                    "$type": 5,
+                    "_x": -13.625,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 56,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 1.5
+                },
+                "_rotation": {
+                    "$id": 57,
+                    "$type": 7,
+                    "_angle": 0
+                },
+                "_keyframes": {
+                    "$id": 58,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 59,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 60,
+                    "$type": 5,
+                    "_x": 3.25,
+                    "_y": -13.25
+                },
+                "_scale": {
+                    "$id": 61,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 2
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 62,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 63,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 64,
+                    "$type": 5,
+                    "_x": -5.5,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 65,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 66,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 67,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 68,
+                    "$type": 5,
+                    "_x": 3.25,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 69,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 70,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 71,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 72,
+                    "$type": 5,
+                    "_x": 3.25,
+                    "_y": -2.875
+                },
+                "_scale": {
+                    "$id": 73,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 3.75
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 74,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 75,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 76,
+                    "$type": 5,
+                    "_x": -22.375,
+                    "_y": -2.875
+                },
+                "_scale": {
+                    "$id": 77,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 3.75
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 78,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 79,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 80,
+                    "$type": 5,
+                    "_x": -5.875,
+                    "_y": -7.75
+                },
+                "_scale": {
+                    "$id": 81,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 82,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 83,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 84,
+                    "$type": 5,
+                    "_x": 3.25,
+                    "_y": 13.375
+                },
+                "_scale": {
+                    "$id": 85,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 1.25
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 86,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 87,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 88,
+                    "$type": 5,
+                    "_x": 6.875,
+                    "_y": 19.5
+                },
+                "_scale": {
+                    "$id": 89,
+                    "$type": 6,
+                    "_x": 58.75,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 90,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 91,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 92,
+                    "$type": 5,
+                    "_x": 34.875,
+                    "_y": -0.875
+                },
+                "_scale": {
+                    "$id": 93,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 39.75
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 94,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 95,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 96,
+                    "$type": 5,
+                    "_x": -1.5,
+                    "_y": -20.25
+                },
+                "_scale": {
+                    "$id": 97,
+                    "$type": 6,
+                    "_x": 70,
+                    "_y": 1
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 98,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 99,
+                "$type": 13,
+                "_active": true,
+                "_position": {
+                    "$id": 100,
+                    "$type": 5,
+                    "_x": -35.125,
+                    "_y": 3.125
+                },
+                "_scale": {
+                    "$id": 101,
+                    "$type": 6,
+                    "_x": 2.75,
+                    "_y": 45.75
+                },
+                "_rotation": $iref:15,
+                "_keyframes": {
+                    "$id": 102,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 103,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 104,
+                    "$type": 5,
+                    "_x": -10.25,
+                    "_y": -2.875
+                },
+                "_scale": {
+                    "$id": 105,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 3.75
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 106,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 107,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 108,
+                    "$type": 5,
+                    "_x": 3.25,
+                    "_y": 2.875
+                },
+                "_scale": {
+                    "$id": 109,
+                    "$type": 6,
+                    "_x": 2.5,
+                    "_y": 2.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 110,
+                    "$type": 8,
+                    "$rlength": 5,
+                    "$rcontent": [
+                        {
+                            "$id": 111,
+                            "$type": "16|MapsExt.AnimationKeyframe, MapsExtended",
+                            "_componentValues": {
+                                "$id": 112,
+                                "$type": "17|System.Collections.Generic.List`1[[MapsExt.Properties.ILinearProperty, MapsExtended]], mscorlib",
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 113,
+                                        "$type": 5,
+                                        "_x": 3.25,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 114,
+                                        "$type": 6,
+                                        "_x": 2.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:57
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 115,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 116,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 117,
+                                        "$type": 5,
+                                        "_x": 3.25,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 118,
+                                        "$type": 6,
+                                        "_x": 2.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:57
+                                ]
+                            },
+                            "_duration": 1.2,
+                            "_curveType": 0
+                        },
+                        {
+                            "$id": 119,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 120,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 121,
+                                        "$type": 5,
+                                        "_x": 3.25,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 122,
+                                        "$type": 6,
+                                        "_x": 2.5,
+                                        "_y": 2.5
+                                    },
+                                    {
+                                        "$id": 123,
+                                        "$type": 7,
+                                        "_angle": 315
+                                    }
+                                ]
+                            },
+                            "_duration": 0.7,
+                            "_curveType": 3
+                        },
+                        {
+                            "$id": 124,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 125,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 126,
+                                        "$type": 5,
+                                        "_x": 3.25,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 127,
+                                        "$type": 6,
+                                        "_x": 2.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:123
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 3
+                        },
+                        {
+                            "$id": 128,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 129,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 130,
+                                        "$type": 5,
+                                        "_x": 3.25,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 131,
+                                        "$type": 6,
+                                        "_x": 2.5,
+                                        "_y": 2.5
+                                    },
+                                    {
+                                        "$id": 132,
+                                        "$type": 7,
+                                        "_angle": 270
+                                    }
+                                ]
+                            },
+                            "_duration": 0.7,
+                            "_curveType": 3
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 133,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 134,
+                    "$type": 5,
+                    "_x": -18.8470879,
+                    "_y": -19.22209
+                },
+                "_scale": {
+                    "$id": 135,
+                    "$type": 6,
+                    "_x": 6.5,
+                    "_y": 2.5
+                },
+                "_rotation": {
+                    "$id": 136,
+                    "$type": 7,
+                    "_angle": 45
+                },
+                "_keyframes": {
+                    "$id": 137,
+                    "$type": 8,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$id": 138,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 139,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 140,
+                                        "$type": 5,
+                                        "_x": -18.8470879,
+                                        "_y": -19.22209
+                                    },
+                                    {
+                                        "$id": 141,
+                                        "$type": 6,
+                                        "_x": 6.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:136
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 142,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 143,
+                    "$type": 5,
+                    "_x": 24.8167629,
+                    "_y": -18.691761
+                },
+                "_scale": {
+                    "$id": 144,
+                    "$type": 6,
+                    "_x": 16.5,
+                    "_y": 2.5
+                },
+                "_rotation": {
+                    "$id": 145,
+                    "$type": 7,
+                    "_angle": 315
+                },
+                "_keyframes": {
+                    "$id": 146,
+                    "$type": 8,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$id": 147,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 148,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 149,
+                                        "$type": 5,
+                                        "_x": 24.8167629,
+                                        "_y": -18.691761
+                                    },
+                                    {
+                                        "$id": 150,
+                                        "$type": 6,
+                                        "_x": 16.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:145
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 151,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 152,
+                    "$type": 5,
+                    "_x": 22.0767288,
+                    "_y": 21.70173
+                },
+                "_scale": {
+                    "$id": 153,
+                    "$type": 6,
+                    "_x": 8.25,
+                    "_y": 2.5
+                },
+                "_rotation": {
+                    "$id": 154,
+                    "$type": 7,
+                    "_angle": 45
+                },
+                "_keyframes": {
+                    "$id": 155,
+                    "$type": 8,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$id": 156,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 157,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 158,
+                                        "$type": 5,
+                                        "_x": 22.0767288,
+                                        "_y": 21.70173
+                                    },
+                                    {
+                                        "$id": 159,
+                                        "$type": 6,
+                                        "_x": 8.25,
+                                        "_y": 2.5
+                                    },
+                                    $iref:154
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 160,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 161,
+                    "$type": 5,
+                    "_x": -19.9077511,
+                    "_y": 26.0327587
+                },
+                "_scale": {
+                    "$id": 162,
+                    "$type": 6,
+                    "_x": 14.5,
+                    "_y": 2.5
+                },
+                "_rotation": {
+                    "$id": 163,
+                    "$type": 7,
+                    "_angle": 315
+                },
+                "_keyframes": {
+                    "$id": 164,
+                    "$type": 8,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$id": 165,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 166,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 167,
+                                        "$type": 5,
+                                        "_x": -19.9077511,
+                                        "_y": 26.0327587
+                                    },
+                                    {
+                                        "$id": 168,
+                                        "$type": 6,
+                                        "_x": 14.5,
+                                        "_y": 2.5
+                                    },
+                                    $iref:163
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 169,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 170,
+                    "$type": 5,
+                    "_x": -30.625,
+                    "_y": -2.875
+                },
+                "_scale": {
+                    "$id": 171,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 3.75
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 172,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 173,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 174,
+                    "$type": 5,
+                    "_x": -25,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 175,
+                    "$type": 6,
+                    "_x": 1.5,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 176,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 177,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 178,
+                    "$type": 5,
+                    "_x": -33.125,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 179,
+                    "$type": 6,
+                    "_x": 2.25,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 180,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 181,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 182,
+                    "$type": 5,
+                    "_x": 27,
+                    "_y": -2.875
+                },
+                "_scale": {
+                    "$id": 183,
+                    "$type": 6,
+                    "_x": 1,
+                    "_y": 3.75
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 184,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            },
+            {
+                "$id": 185,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 186,
+                    "$type": 5,
+                    "_x": 27,
+                    "_y": 2.875
+                },
+                "_scale": {
+                    "$id": 187,
+                    "$type": 6,
+                    "_x": 1,
+                    "_y": 2.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 188,
+                    "$type": 8,
+                    "$rlength": 1,
+                    "$rcontent": [
+                        {
+                            "$id": 189,
+                            "$type": 16,
+                            "_componentValues": {
+                                "$id": 190,
+                                "$type": 17,
+                                "$rlength": 3,
+                                "$rcontent": [
+                                    {
+                                        "$id": 191,
+                                        "$type": 5,
+                                        "_x": 27,
+                                        "_y": 2.875
+                                    },
+                                    {
+                                        "$id": 192,
+                                        "$type": 6,
+                                        "_x": 1,
+                                        "_y": 2.5
+                                    },
+                                    $iref:57
+                                ]
+                            },
+                            "_duration": 1,
+                            "_curveType": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "$id": 193,
+                "$type": 15,
+                "_active": true,
+                "_position": {
+                    "$id": 194,
+                    "$type": 5,
+                    "_x": 27,
+                    "_y": 6.75
+                },
+                "_scale": {
+                    "$id": 195,
+                    "$type": 6,
+                    "_x": 1,
+                    "_y": 1.5
+                },
+                "_rotation": $iref:57,
+                "_keyframes": {
+                    "$id": 196,
+                    "$type": 8,
+                    "$rlength": 0,
+                    "$rcontent": [
+                    ]
+                }
+            }
+        ]
+    }
+}

@@ -14,6 +14,10 @@ namespace LopisParkourNS;
 public class ParkourSpawnVisualizer : MonoBehaviour
 {
 	public GameObject? groundCircle;
+	public SpriteRenderer? groundCircleSprite;
+	public Color activeColor = new Color(1f, 1f, 0.4f, 0.2f);
+	public Color disabledColor = new Color(0.7f, 0.7f, 0.7f, 0.2f);
+
 	// private Image _labelBg;
 	public void SetEnabled(bool enabled)
 	{
@@ -34,24 +38,26 @@ public class ParkourSpawnVisualizer : MonoBehaviour
 			UnityEngine.GameObject.Destroy(groundCircle.GetComponent<SpriteMask>());
 			groundCircle.GetOrAddComponent<SpriteRenderer>().material = LopisParkour.defaultMaterial;
 
-			groundCircle.GetOrAddComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.4f, 0.2f);
+			groundCircle.GetOrAddComponent<SpriteRenderer>().color = disabledColor;
 
 			LopisParkour.instance.ExecuteAfterFrames(1, () => 
 			{
+				if (groundCircle == null) return;
 				UnityEngine.GameObject.Destroy(groundCircle.GetComponent<SpriteMask>());
-				var sprite = groundCircle.GetOrAddComponent<SpriteRenderer>();
+				if (groundCircleSprite == null) groundCircleSprite = groundCircle.GetOrAddComponent<SpriteRenderer>();
 
-				sprite.material = LopisParkour.defaultMaterial;
-				sprite.color = new Color(1f, 1f, 0.4f, 0.2f);
+				groundCircleSprite.material = LopisParkour.defaultMaterial;
+				groundCircleSprite.color = disabledColor;
 			});
 			UnityEngine.GameObject.Destroy(groundCircle.GetComponent<SpriteMask>());
 			LopisParkour.instance.ExecuteAfterFrames(5, () =>
 			{
+				if (groundCircle == null) return;
 				UnityEngine.GameObject.Destroy(groundCircle.GetComponent<SpriteMask>());
-				var sprite = groundCircle.GetOrAddComponent<SpriteRenderer>();
+				if (groundCircleSprite == null) groundCircleSprite = groundCircle.GetOrAddComponent<SpriteRenderer>();
 
-				sprite.material = LopisParkour.defaultMaterial;
-				sprite.color = new Color(1f, 1f, 0.4f, 0.2f);
+				groundCircleSprite.material = LopisParkour.defaultMaterial;
+				groundCircleSprite.color = disabledColor;
 			});
 
 		});
@@ -76,7 +82,15 @@ public class ParkourSpawnVisualizer : MonoBehaviour
 		if (groundCircle != null)
 		{
 			if (PlayerManager.instance.players.Count > 0) UnityEngine.Object.Destroy(this);
-			else groundCircle.transform.position = this.transform.position;
+			else
+			{
+				if (groundCircleSprite == null) groundCircleSprite = groundCircle.GetOrAddComponent<SpriteRenderer>();
+				groundCircle.transform.position = this.transform.position;
+				if (groundCircleSprite.color == disabledColor && MapManager.instance.currentMap.Map.hasEntered && !MapTransition.isTransitioning)
+				{
+					groundCircleSprite.color = activeColor;
+				}
+			}
 		}
 		// SpawnPoint component = ((Component)this).gameObject.GetComponent<SpawnPoint>();
 		// Vector3 val = MainCam.instance.cam.WorldToScreenPoint(((Component)this).transform.position) - MainCam.instance.cam.WorldToScreenPoint(((Component)MainCam.instance.cam).transform.position);
